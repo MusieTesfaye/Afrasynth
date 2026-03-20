@@ -1,18 +1,18 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { page } from '@inertiajs/svelte';
-    import AppHead from '@/components/AppHead.svelte';
-    import { Button } from '@/components/ui/button';
     import { gsap } from 'gsap';
     import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    import { onMount } from 'svelte';
+    import AppHead from '@/components/AppHead.svelte';
+    import { Button } from '@/components/ui/button';
 
     let {
-        canRegister = true,
+        _canRegister = true,
     }: {
-        canRegister?: boolean;
+        _canRegister?: boolean;
     } = $props();
 
-    const auth = $derived($page.props.auth);
+    const _auth = $derived($page.props.auth);
 
     let cursor: HTMLElement;
     let cursorInner: HTMLElement;
@@ -180,6 +180,7 @@
         const interval = setInterval(() => {
             uptime = 99.99 + Math.random() * 0.009;
         }, 3000);
+
         return () => clearInterval(interval);
     });
 </script>
@@ -197,7 +198,7 @@
             <span class="font-bebas text-5xl tracking-tighter italic">AFRASYNTH</span>
         </div>
         <div class="hidden gap-16 text-[10px] font-black uppercase tracking-[0.5em] md:flex">
-            {#each ['Capabilities', 'Protocol', 'Manifesto'] as link}
+            {#each ['Capabilities', 'Protocol', 'Manifesto'] as link (link)}
                 <a href="#{link.toLowerCase()}" onmouseenter={(e) => handleInteraction(e, 1.1)} onmouseleave={resetInteraction} class="hover:opacity-100 transition-opacity py-2">{link}</a>
             {/each}
         </div>
@@ -226,9 +227,9 @@
 
             <div class="hero-reveal-text mb-12 max-w-7xl px-6 z-10 relative">
                 <h1 class="font-bebas text-[clamp(3.5rem,13vw,10rem)] leading-[0.8] tracking-tighter italic mb-12 overflow-hidden">
-                    {#each "ARCHITECTING AFRICA’S DIGITAL INDEPENDENCE.".split(" ") as word}
+                    {#each "ARCHITECTING AFRICA’S DIGITAL INDEPENDENCE.".split(" ") as word (word)}
                          <span class="inline-block mr-[0.2em]">
-                            {#each word.split("") as char}
+                            {#each word.split("") as char, i (i)}
                                 <span class="inline-block">{char}</span>
                             {/each}
                          </span>
@@ -256,7 +257,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    {#each services as service}
+                    {#each services as service (service.id)}
                         <div 
                             onmouseenter={(e) => handleInteraction(e, 1)} 
                             onmouseleave={resetInteraction}
@@ -288,7 +289,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
-                    {#each ['Audit', 'Design', 'Deploy', 'Sovereignty'] as step, i}
+                    {#each ['Audit', 'Design', 'Deploy', 'Sovereignty'] as step, i (step)}
                         <div 
                             onmouseenter={(e) => handleInteraction(e, 1.1)}
                             onmouseleave={resetInteraction}
@@ -316,7 +317,7 @@
                  </div>
                  
                  <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-32 border-t border-black/5 pt-20">
-                     {#each [{t: 'DESTINY BY DESIGN', d: 'Secure data lanes and high-performance clusters for the next century.'}, {t: 'AUTONOMOUS CORE', d: 'Vetted logic for absolute autonomy and continental security standards.'}] as item}
+                     {#each [{t: 'DESTINY BY DESIGN', d: 'Secure data lanes and high-performance clusters for the next century.'}, {t: 'AUTONOMOUS CORE', d: 'Vetted logic for absolute autonomy and continental security standards.'}] as item (item.t)}
                          <div class="reveal-cinematic space-y-6 border-l-[1.5px] border-black/10 pl-10 hover:border-black transition-colors duration-700">
                              <h4 class="font-bebas text-4xl italic tracking-wide">{item.t}</h4>
                              <p class="text-xl font-light opacity-50 uppercase tracking-[0.2em] leading-loose">{item.d}</p>
@@ -386,11 +387,11 @@
                     </p>
                 </div>
 
-                {#each footerLinks as column}
+                {#each footerLinks as column (column.title)}
                     <div class="reveal-cinematic flex flex-col gap-10">
                         <h4 class="text-black italic border-b border-black pb-4 w-fit text-[12px] font-black uppercase tracking-[0.4em]">{column.title}</h4>
                         <ul class="flex flex-col gap-6">
-                            {#each column.links as link}
+                            {#each column.links as link (link.name)}
                                 <li>
                                     <a 
                                         href={link.href} 
