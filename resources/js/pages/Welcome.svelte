@@ -475,18 +475,7 @@
                     </div>
                 </div>
 
-                <div class="hidden md:flex items-center gap-12">
-                    {#each ['Projects', 'Capabilities', 'Protocol', 'Manifesto', 'Team'] as item}
-                        <a
-                            href="#{item.toLowerCase()}"
-                            onmouseenter={(e) => handleInteraction(e, 1.1)}
-                            onmouseleave={resetInteraction}
-                            class="nav-item text-[10px] font-bold uppercase tracking-[0.4em] hover:text-[#00FF41] transition-colors"
-                        >
-                            {item}
-                        </a>
-                    {/each}
-                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
                     {#each ['Audit', 'Design', 'Deploy', 'Sovereignty'] as step, i (step)}
                         <div
