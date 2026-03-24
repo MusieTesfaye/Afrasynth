@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@100;300;400;700&display=swap');
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 @import 'tw-animate-css';
 
@@ -10,11 +10,10 @@
 
 @theme inline {
     --font-sans:
-        Instrument Sans, ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
-
-    --font-bebas: "Bebas Neue", sans-serif;
+        'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-bebas: 'Bebas Neue', sans-serif;
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -86,9 +85,8 @@
     body,
     html {
         --font-sans:
-            'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-            'Noto Color Emoji';
+            'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            monospace;
     }
 }
 
@@ -170,6 +168,6 @@
         @apply border-border outline-ring/50;
     }
     body {
-        @apply bg-white text-black;
+        @apply bg-[#fbfbfb] text-[#050505] font-sans antialiased;
     }
 }
